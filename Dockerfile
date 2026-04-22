@@ -9,6 +9,6 @@ COPY . .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Cambia 5000 por el puerto que uses en tu math_api.py
-EXPOSE 5000
+EXPOSE 80
 
 CMD ["python", "math_api.py"]
