@@ -1,0 +1,6 @@
+.env
+__pycache__/
+cf_log.txt
+cloudflared.exe
+*.pyc
+tunnel_url.txt

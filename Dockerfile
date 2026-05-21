@@ -1,14 +1,21 @@
-FROM python:3.10-slim
+FROM python:3.11-slim
 
-# Instala el solver matemático para PuLP
-RUN apt-get update && apt-get install -y coinor-cbc
+# Instalar dependencias del sistema requeridas para CBC/PuLP
+RUN apt-get update && apt-get install -y \
+    coinor-cbc \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
-COPY . .
 
+# Copiar dependencias e instalarlas
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Cambia 5000 por el puerto que uses en tu math_api.py
-EXPOSE 5000
+# Copiar el código fuente
+COPY . .
 
-CMD ["uvicorn", "math_api:app", "--host", "0.0.0.0", "--port", "5000"]
+# Exponer el puerto por defecto (80 u 8000)
+EXPOSE 8000
+
+# Comando para ejecutar el microservicio
+CMD ["uvicorn", "math_api:app", "--host", "0.0.0.0", "--port", "8000"]
