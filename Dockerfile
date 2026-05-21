@@ -14,8 +14,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copiar el código fuente
 COPY . .
 
-# Exponer el puerto por defecto (80 u 8000)
-EXPOSE 8000
+# Exponer el puerto por defecto de Easypanel (5000)
+EXPOSE 5000
 
 # Comando para ejecutar el microservicio
-CMD ["uvicorn", "math_api:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "math_api:app", "--host", "0.0.0.0", "--port", "5000"]
